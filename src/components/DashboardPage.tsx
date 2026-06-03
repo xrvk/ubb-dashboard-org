@@ -15,6 +15,12 @@ import { projectMonthlyBudget } from '@/lib/projection'
 import { cn, formatCurrency } from '@/lib/utils'
 import type { CopilotUsageSummary } from '@/lib/api'
 import { ConstraintsBanner } from '@/components/ConstraintsBanner'
+import {
+  navigateToBudgetModel,
+  navigateToIndividual,
+  navigateToUniversal,
+} from '@/lib/navigate'
+import { IndUlbStatusDonut } from '@/components/IndUlbStatusDonut'
 
 /**
  * Top-level Dashboard for the org variant. Single-screen rollup of the
@@ -201,6 +207,12 @@ export function DashboardPage() {
             }
           />
         </div>
+      </Section>
+
+      {/* § 4 — Individual ULB utilization rollup, clickable into the
+          Individual ULBs tab pre-filtered to the chosen band. */}
+      <Section title="Individual ULB utilization">
+        <IndUlbStatusDonut budgets={budgets} />
       </Section>
     </div>
   )
