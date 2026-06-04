@@ -14,7 +14,8 @@ import {
 } from '@/lib/api'
 import { describeError } from '@/lib/errors'
 import { formatCurrency, openExternal } from '@/lib/utils'
-import { computeBudgetConstraints } from '@/lib/budgetConstraints'
+import { computeBudgetConstraints, type ComputeBudgetConstraintsInput } from '@/lib/budgetConstraints'
+import { includedAiCredits, seatCostBreakdown } from '@/lib/pricing'
 import {
   loadAllCachedReports,
   aggregateMaxMonth,
@@ -182,11 +183,20 @@ export function UniversalUlbPage() {
   const ulbAICs = ulbOverrideAICs !== null ? ulbOverrideAICs : threshold.suggestedULB
   const ulbIsOverridden = ulbOverrideAICs !== null
 
-  // Inputs for the constraint engine.
-  const constraintsInput = useMemo(
-    () => ({ orgBudget, universalUlb, seats, userBudgets: budgets }),
-    [orgBudget, universalUlb, seats, budgets],
-  )
+  // Inputs for the constraint engine. Same shape useBudgetConstraints builds,
+  // assembled inline so the apply-handler below can feed the same shape into
+  // the constraint engine for the pre-flight envelope check.
+  const constraintsInput: ComputeBudgetConstraintsInput = useMemo(() => {
+    const breakdown = seatCostBreakdown(seats)
+    const pool = includedAiCredits(breakdown.business, breakdown.enterprise)
+    return {
+      orgBudget,
+      universalUlb,
+      seats,
+      userBudgets: budgets,
+      poolDollars: pool.totalDollars,
+    }
+  }, [orgBudget, universalUlb, seats, budgets])
 
   // Coverage: how many regular users fit under the chosen ULB?
   const coverage = useMemo(() => {

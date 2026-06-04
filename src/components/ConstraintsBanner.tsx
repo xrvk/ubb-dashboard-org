@@ -46,11 +46,27 @@ export function ConstraintsBanner() {
                 {formatCurrency(mainCheck.overBy)}
               </div>
               <p className="mt-1 text-sm opacity-90">
-                Total effective per-user caps sum to{' '}
-                <span className="font-semibold">{formatCurrency(mainCheck.actual)}</span>{' '}
-                across all Copilot seats, but the org-level budget only
-                allows <span className="font-semibold">{formatCurrency(mainCheck.allowed)}</span>.
-                Pick one of the actions below to bring the totals back in line.
+                {mainCheck.poolShare > 0 ? (
+                  <>
+                    Total effective per-user caps sum to{' '}
+                    <span className="font-semibold">{formatCurrency(mainCheck.grossUlbs)}</span>{' '}
+                    across all Copilot seats.{' '}
+                    <span className="font-semibold">{formatCurrency(mainCheck.poolShare)}</span>{' '}
+                    comes out of the shared AI credit pool, leaving{' '}
+                    <span className="font-semibold">{formatCurrency(mainCheck.actual)}</span>{' '}
+                    of metered exposure against an org budget of{' '}
+                    <span className="font-semibold">{formatCurrency(mainCheck.allowed)}</span>.
+                    Pick one of the actions below to bring the totals back in line.
+                  </>
+                ) : (
+                  <>
+                    Total effective per-user caps sum to{' '}
+                    <span className="font-semibold">{formatCurrency(mainCheck.actual)}</span>{' '}
+                    across all Copilot seats, but the org-level budget only
+                    allows <span className="font-semibold">{formatCurrency(mainCheck.allowed)}</span>.
+                    Pick one of the actions below to bring the totals back in line.
+                  </>
+                )}
               </p>
               <div className="mt-2 flex flex-wrap gap-2">
                 <Button
