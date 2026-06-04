@@ -15,11 +15,6 @@ import { projectMonthlyBudget } from '@/lib/projection'
 import { cn, formatCurrency } from '@/lib/utils'
 import type { CopilotUsageSummary } from '@/lib/api'
 import { ConstraintsBanner } from '@/components/ConstraintsBanner'
-import {
-  navigateToBudgetModel,
-  navigateToIndividual,
-  navigateToUniversal,
-} from '@/lib/navigate'
 import { IndUlbStatusDonut } from '@/components/IndUlbStatusDonut'
 
 /**
