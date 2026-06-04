@@ -13,10 +13,7 @@ import {
   NAV_TO_BUDGET_MODEL_EVENT,
   NAV_TO_INDIVIDUAL_EVENT,
   NAV_TO_UNIVERSAL_EVENT,
-  PLANNER_HIGHLIGHT_EVENT,
   type NavToIndividualDetail,
-  type NavToIndividualTask,
-  type PlannerHighlightDetail,
 } from '@/lib/navEvents'
 
 /**
@@ -26,11 +23,9 @@ import {
  */
 export function navigateToIndividual(opts: {
   filter?: Partial<TableFilters>
-  task?: NavToIndividualTask
 } = {}): void {
   const detail: NavToIndividualDetail = {
     filter: { ...EMPTY_FILTERS, ...(opts.filter ?? {}) },
-    task: opts.task,
   }
   window.dispatchEvent(new CustomEvent<NavToIndividualDetail>(NAV_TO_INDIVIDUAL_EVENT, { detail }))
 }
@@ -43,14 +38,4 @@ export function navigateToUniversal(): void {
 /** Navigate to the in-app budget constraint model explainer. */
 export function navigateToBudgetModel(): void {
   window.dispatchEvent(new CustomEvent(NAV_TO_BUDGET_MODEL_EVENT))
-}
-
-/**
- * Navigate to the Budget model page and highlight a specific section with a
- * transient banner explaining what the user should adjust.
- */
-export function highlightBudgetPlanner(detail: PlannerHighlightDetail): void {
-  window.dispatchEvent(
-    new CustomEvent<PlannerHighlightDetail>(PLANNER_HIGHLIGHT_EVENT, { detail }),
-  )
 }
