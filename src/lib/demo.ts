@@ -26,24 +26,10 @@ export function generateDemoBudgets(count: number, seed = 42): UserBudget[] {
     return s / 0x7fffffff
   }
 
-  const tiers: Array<{ budget: number; weight: number }> = [
-    { budget: 10, weight: 0.15 },
-    { budget: 25, weight: 0.25 },
-    { budget: 50, weight: 0.3 },
-    { budget: 100, weight: 0.2 },
-    { budget: 200, weight: 0.08 },
-    { budget: 500, weight: 0.02 },
-  ]
-
-  const pickTier = () => {
-    const r = rand()
-    let acc = 0
-    for (const t of tiers) {
-      acc += t.weight
-      if (r <= acc) return t.budget
-    }
-    return tiers[tiers.length - 1].budget
-  }
+  // SCENARIO DEMO: every individual ULB is sized at a flat $60 so the
+  // story matches "~13 people have a $60 individual ULB" — the tiered
+  // distribution below is bypassed but left in place for reference.
+  const pickTier = () => 60
 
   const out: UserBudget[] = []
   for (let i = 0; i < count; i += 1) {
@@ -186,7 +172,7 @@ export function generateDemoUniversalUlb(budgets?: UserBudget[]): UniversalUlb {
   const consumed = Math.round(indivConsumed * 0.18 * 100) / 100
   return {
     id: 'demo-uulb',
-    budgetAmount: 50,
+    budgetAmount: 25,
     consumedAmount: consumed,
     preventFurtherUsage: true,
     willAlert: false,
@@ -234,6 +220,8 @@ export function scaleDemoConsumptionTo(
     b.consumedAmount = Math.round(b.consumedAmount * scale * 100) / 100
   }
 }
+
+
 
 
 

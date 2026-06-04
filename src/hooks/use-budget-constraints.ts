@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { computeBudgetConstraints, type BudgetConstraintsResult } from '@/lib/budgetConstraints'
 import { useCredentials } from '@/hooks/use-credentials'
+import { includedAiCredits, seatCostBreakdown } from '@/lib/pricing'
 
 /**
  * Shared computation of the BudgetConstraintsResult from the credentials
@@ -10,14 +11,15 @@ import { useCredentials } from '@/hooks/use-credentials'
 export function useBudgetConstraints(): BudgetConstraintsResult {
   const { orgBudget, universalUlb, seats, budgets } = useCredentials()
 
-  return useMemo(
-    () =>
-      computeBudgetConstraints({
-        orgBudget,
-        universalUlb,
-        seats,
-        userBudgets: budgets,
-      }),
-    [orgBudget, universalUlb, seats, budgets],
-  )
+  return useMemo(() => {
+    const breakdown = seatCostBreakdown(seats)
+    const pool = includedAiCredits(breakdown.business, breakdown.enterprise)
+    return computeBudgetConstraints({
+      orgBudget,
+      universalUlb,
+      seats,
+      userBudgets: budgets,
+      poolDollars: pool.totalDollars,
+    })
+  }, [orgBudget, universalUlb, seats, budgets])
 }
