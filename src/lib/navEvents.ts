@@ -9,6 +9,16 @@
 
 export const NAV_TO_INDIVIDUAL_EVENT = 'ubb:nav-to-individual'
 
+/**
+ * Payload for `NAV_TO_INDIVIDUAL_EVENT`. Used by deep-links (e.g. the
+ * Individual ULB utilization donut on the Dashboard) so callers can
+ * pre-populate the destination tab's filter state. The org variant has no
+ * cross-tab task plumbing, so `filter` is the only field today.
+ */
+export interface NavToIndividualDetail {
+  filter: import('@/components/BudgetsTable').TableFilters
+}
+
 /** Navigate to the Universal ULB tab. */
 export const NAV_TO_UNIVERSAL_EVENT = 'ubb:nav-to-universal'
 
