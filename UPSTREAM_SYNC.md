@@ -1,8 +1,8 @@
 # Upstream sync log
 
 This repo (`xrvk/ubb-dashboard-org`) is a sibling of
-[`xrvk/ind-ulb-dashboard`](https://github.com/xrvk/ind-ulb-dashboard) (the GHEC
-enterprise variant of the same app). Both repos share a meaningful chunk of
+[`xrvk/ubb-dashboard`](https://github.com/xrvk/ubb-dashboard) (the GHEC
+enterprise variant of the same app, formerly `xrvk/ind-ulb-dashboard`). Both repos share a meaningful chunk of
 infrastructure code (rate-limit-aware batching, CSV parsing, snapshot/revert,
 projection math, the consumption curve, the individual-ULB table mechanics)
 that we want to keep in sync without forcing them to be a literal GitHub fork.
@@ -14,7 +14,7 @@ This file tracks every commit cherry-picked between the two repos.
 In a local clone of this repo, add the parent as a remote:
 
 ```bash
-git remote add upstream https://github.com/xrvk/ind-ulb-dashboard.git
+git remote add upstream https://github.com/xrvk/ubb-dashboard.git
 git fetch upstream
 ```
 
@@ -56,7 +56,7 @@ git cherry-pick --continue
 ```
 
 The other direction (org → enterprise) is the mirror: from a clone of
-`xrvk/ind-ulb-dashboard`, add this repo as `org-variant` and cherry-pick by SHA.
+`xrvk/ubb-dashboard`, add this repo as `org-variant` and cherry-pick by SHA.
 
 ## Log
 
