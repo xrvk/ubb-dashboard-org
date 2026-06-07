@@ -65,6 +65,8 @@ The other direction (org → enterprise) is the mirror: from a clone of
 | Date | Direction | SHA | Summary | Notes |
 |---|---|---|---|---|
 | 2026-05-29 | seed | `5069490` | Initial org-variant foundation | First commit on `xrvk/silver-parakeet` after cloning `xrvk/ind-ulb-dashboard`. Not a cherry-pick — this is the seed point. |
+| 2026-06-07 | upstream → org | `caaf76d` | Remove 'Copy error log' button from footer (#48) | No-op apply. Org variant footer never had the button and `CopyErrorLogButton.tsx` was already absent. Logged for parity. |
+| 2026-06-07 | upstream → org | `2250a33` | Replace forbidden-strings CI gate with local pre-commit hook (#69) | Adapted: workflow-deletion half skipped (org repo never carried `.github/workflows/forbidden-strings.yml` because upstream #44 was out of scope here). Only the hook, installer, and CONTRIBUTING note were applied. |
 
 <!-- Add new rows at the bottom. Keep the table chronological. -->
 
