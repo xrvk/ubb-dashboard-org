@@ -1,8 +1,8 @@
 # Upstream sync log
 
 This repo (`xrvk/ubb-dashboard-org`) is a sibling of
-[`xrvk/ind-ulb-dashboard`](https://github.com/xrvk/ind-ulb-dashboard) (the GHEC
-enterprise variant of the same app). Both repos share a meaningful chunk of
+[`xrvk/ubb-dashboard`](https://github.com/xrvk/ubb-dashboard) (the GHEC
+enterprise variant of the same app, formerly `xrvk/ind-ulb-dashboard`). Both repos share a meaningful chunk of
 infrastructure code (rate-limit-aware batching, CSV parsing, snapshot/revert,
 projection math, the consumption curve, the individual-ULB table mechanics)
 that we want to keep in sync without forcing them to be a literal GitHub fork.
@@ -14,7 +14,7 @@ This file tracks every commit cherry-picked between the two repos.
 In a local clone of this repo, add the parent as a remote:
 
 ```bash
-git remote add upstream https://github.com/xrvk/ind-ulb-dashboard.git
+git remote add upstream https://github.com/xrvk/ubb-dashboard.git
 git fetch upstream
 ```
 
@@ -56,7 +56,7 @@ git cherry-pick --continue
 ```
 
 The other direction (org → enterprise) is the mirror: from a clone of
-`xrvk/ind-ulb-dashboard`, add this repo as `org-variant` and cherry-pick by SHA.
+`xrvk/ubb-dashboard`, add this repo as `org-variant` and cherry-pick by SHA.
 
 ## Log
 
@@ -65,6 +65,8 @@ The other direction (org → enterprise) is the mirror: from a clone of
 | Date | Direction | SHA | Summary | Notes |
 |---|---|---|---|---|
 | 2026-05-29 | seed | `5069490` | Initial org-variant foundation | First commit on `xrvk/silver-parakeet` after cloning `xrvk/ind-ulb-dashboard`. Not a cherry-pick — this is the seed point. |
+| 2026-06-07 | upstream → org | `caaf76d` | Remove 'Copy error log' button from footer (#48) | No-op apply. Org variant footer never had the button and `CopyErrorLogButton.tsx` was already absent. Logged for parity. |
+| 2026-06-07 | upstream → org | `2250a33` | Replace forbidden-strings CI gate with local pre-commit hook (#69) | Adapted: workflow-deletion half skipped (org repo never carried `.github/workflows/forbidden-strings.yml` because upstream #44 was out of scope here). Only the hook, installer, and CONTRIBUTING note were applied. |
 | 2026-06-07 | upstream → org | `4996494` | Bump github/codeql-action from 3 to 4 (#64) | Clean apply. |
 | 2026-06-07 | upstream → org | `0e98a78` | Bump the dev-dependencies group across 1 directory with 2 updates (#65) | Auto-merged `package.json` and `package-lock.json`. |
 | 2026-06-07 | upstream → org | `a81b925` | Bump the production-dependencies group with 3 updates (#66) | `package-lock.json` conflict on unrelated diverged deps (`typescript-eslint`, `vite`); kept local values and regenerated lock with `npm install`. |
