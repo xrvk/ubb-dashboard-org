@@ -65,6 +65,9 @@ The other direction (org → enterprise) is the mirror: from a clone of
 | Date | Direction | SHA | Summary | Notes |
 |---|---|---|---|---|
 | 2026-05-29 | seed | `5069490` | Initial org-variant foundation | First commit on `xrvk/silver-parakeet` after cloning `xrvk/ind-ulb-dashboard`. Not a cherry-pick — this is the seed point. |
+| 2026-06-07 | upstream → org | `4996494` | Bump github/codeql-action from 3 to 4 (#64) | Clean apply. |
+| 2026-06-07 | upstream → org | `0e98a78` | Bump the dev-dependencies group across 1 directory with 2 updates (#65) | Auto-merged `package.json` and `package-lock.json`. |
+| 2026-06-07 | upstream → org | `a81b925` | Bump the production-dependencies group with 3 updates (#66) | `package-lock.json` conflict on unrelated diverged deps (`typescript-eslint`, `vite`); kept local values and regenerated lock with `npm install`. |
 
 <!-- Add new rows at the bottom. Keep the table chronological. -->
 
