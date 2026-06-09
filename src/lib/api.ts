@@ -900,6 +900,15 @@ export function orgBudgetsUrl(apiBase: string, org: string): string {
   return `${apiBaseToWebBase(apiBase)}/organizations/${org}/settings/billing/budgets`
 }
 
+/**
+ * Org universal ULB (multi_user_customer scope) detail page. Sends admins to
+ * the per-user usage table for the universal ULB, which is the only surface
+ * that exposes live spend for users who fall under it (no API equivalent).
+ */
+export function universalUlbUrl(apiBase: string, org: string, ulbId: string): string {
+  return `${apiBaseToWebBase(apiBase)}/organizations/${org}/settings/billing/multi_user_budget/${ulbId}`
+}
+
 /** Admin Copilot AI Usage page (drives the "view AI usage" deep-link). */
 export function orgAiUsageUrl(apiBase: string, org: string): string {
   return `${apiBaseToWebBase(apiBase)}/organizations/${org}/settings/billing/ai_usage?period=3&group=7&chart_selection=2&view=models`

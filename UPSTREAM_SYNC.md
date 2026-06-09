@@ -70,6 +70,7 @@ The other direction (org → enterprise) is the mirror: from a clone of
 | 2026-06-07 | upstream → org | `4996494` | Bump github/codeql-action from 3 to 4 (#64) | Clean apply. |
 | 2026-06-07 | upstream → org | `0e98a78` | Bump the dev-dependencies group across 1 directory with 2 updates (#65) | Auto-merged `package.json` and `package-lock.json`. |
 | 2026-06-07 | upstream → org | `a81b925` | Bump the production-dependencies group with 3 updates (#66) | `package-lock.json` conflict on unrelated diverged deps (`typescript-eslint`, `vite`); kept local values and regenerated lock with `npm install`. |
+| 2026-06-08 | upstream → org | `896558b` | Link individual ULB page to universal ULB GitHub view (#70) | Adapted: swapped `credentials.ent` → `credentials.org` and rebuilt `universalUlbUrl` against `/organizations/{org}/settings/billing/multi_user_budget/{id}` instead of the enterprise path. Conflict in `src/lib/api.ts` was the unrelated `costCentersUrl` block from upstream, which is out of scope here and was dropped. |
 
 <!-- Add new rows at the bottom. Keep the table chronological. -->
 
