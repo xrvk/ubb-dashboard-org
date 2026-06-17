@@ -566,7 +566,9 @@ export async function createUserBudget(
       budget_scope: 'user',
       budget_amount: budgetAmount,
       prevent_further_usage: true,
-      target_entity: { user: username },
+      budget_entity_name: '',
+      budget_alerting: { will_alert: false, alert_recipients: [] },
+      user: username,
     }),
   })
 }
@@ -640,7 +642,8 @@ export async function createUniversalULB(
       budget_scope: 'multi_user_customer',
       budget_amount: budgetAmount,
       prevent_further_usage: true,
-      target_entity: {},
+      budget_entity_name: '',
+      budget_alerting: { will_alert: false, alert_recipients: [] },
     }),
   })
 }
