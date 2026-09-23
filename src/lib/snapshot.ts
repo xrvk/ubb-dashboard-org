@@ -156,6 +156,7 @@ export interface ParsedSnapshot {
 }
 export interface ParseError {
   ok: false
+  reason: string
   error: string
 }
 
@@ -168,33 +169,34 @@ export function parseSnapshot(input: string, expectedEnterprise?: string): Parse
   try {
     data = JSON.parse(input)
   } catch {
-    return { ok: false, error: 'Not valid JSON.' }
+    return { ok: false, reason: 'invalid_json', error: 'Not valid JSON.' }
   }
   if (!data || typeof data !== 'object') {
-    return { ok: false, error: 'Snapshot must be a JSON object.' }
+    return { ok: false, reason: 'invalid_json', error: 'Snapshot must be a JSON object.' }
   }
   const obj = data as Record<string, unknown>
   if (typeof obj.schemaVersion === 'number' && obj.schemaVersion !== SCHEMA_VERSION) {
-    return { ok: false, error: `Unsupported snapshot schema version ${obj.schemaVersion}.` }
+    return { ok: false, reason: 'unsupported_schema', error: `Unsupported snapshot schema version ${obj.schemaVersion}.` }
   }
   if (typeof obj.enterprise !== 'string' || !obj.enterprise) {
-    return { ok: false, error: 'Snapshot is missing `enterprise`.' }
+    return { ok: false, reason: 'missing_enterprise', error: 'Snapshot is missing `enterprise`.' }
   }
   if (expectedEnterprise && obj.enterprise !== expectedEnterprise) {
     return {
       ok: false,
+      reason: 'wrong_enterprise',
       error: `Snapshot was taken from enterprise '${obj.enterprise}', but you are connected to '${expectedEnterprise}'.`,
     }
   }
   if (typeof obj.id !== 'string' || !Number.isFinite(obj.appliedAt as number) || !Number.isFinite(obj.cycleEndsAt as number)) {
-    return { ok: false, error: 'Snapshot is missing required fields.' }
+    return { ok: false, reason: 'missing_fields', error: 'Snapshot is missing required fields.' }
   }
   if (!Array.isArray(obj.entries) || obj.entries.length === 0) {
-    return { ok: false, error: 'Snapshot has no entries.' }
+    return { ok: false, reason: 'empty_entries', error: 'Snapshot has no entries.' }
   }
   const entries: BulkApplySnapshot['entries'] = []
   for (const raw of obj.entries) {
-    if (!raw || typeof raw !== 'object') return { ok: false, error: 'Snapshot entries must be objects.' }
+    if (!raw || typeof raw !== 'object') return { ok: false, reason: 'invalid_entry', error: 'Snapshot entries must be objects.' }
     const e = raw as Record<string, unknown>
     if (
       typeof e.budgetId !== 'string' ||
@@ -202,7 +204,7 @@ export function parseSnapshot(input: string, expectedEnterprise?: string): Parse
       !Number.isFinite(e.previousAmount as number) ||
       !Number.isFinite(e.newAmount as number)
     ) {
-      return { ok: false, error: 'Snapshot entries are missing required fields.' }
+      return { ok: false, reason: 'missing_required_entry_fields', error: 'Snapshot entries are missing required fields.' }
     }
     entries.push({
       budgetId: e.budgetId,

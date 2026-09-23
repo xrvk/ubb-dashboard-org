@@ -226,7 +226,7 @@ export function IndividualUlbPage({
         entries: succeededEntries,
       }
       const saveResult = saveSnapshot(snap)
-      if (!saveResult.ok) {
+      if (saveResult.ok === false) {
         const reason =
           saveResult.reason === 'quota_exceeded'
             ? 'browser storage is full'
