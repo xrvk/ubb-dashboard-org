@@ -67,7 +67,7 @@ describe('snapshot storage', () => {
     try {
       const result = saveSnapshot(makeSnap())
       expect(result.ok).toBe(false)
-      if (!result.ok) expect(result.reason).toBe('quota_exceeded')
+      if (result.ok === false) expect(result.reason).toBe('quota_exceeded')
     } finally {
       Storage.prototype.setItem = orig
     }
@@ -91,7 +91,7 @@ describe('snapshot JSON serialization', () => {
     const snap = makeSnap()
     const result = parseSnapshot(serializeSnapshot(snap))
     expect(result.ok).toBe(true)
-    if (result.ok) expect(result.snapshot).toEqual(snap)
+    if (result.ok === true) expect(result.snapshot).toEqual(snap)
   })
 
   it('rejects an enterprise mismatch when expectedEnterprise is given', () => {
@@ -109,7 +109,7 @@ describe('snapshot JSON serialization', () => {
   it('reports a clear error on bad JSON', () => {
     const result = parseSnapshot('not json')
     expect(result.ok).toBe(false)
-    if (!result.ok) expect(result.error).toMatch(/Not valid JSON/)
+    if (result.ok === false) expect(result.error).toMatch(/Not valid JSON/)
   })
 
   it('rejects empty entries', () => {
