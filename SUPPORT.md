@@ -1,10 +1,12 @@
 # Support
 
+This project is deprecated and no longer maintained. The hosted app and container image will stop being updated, and the repository will be archived on December 7, 2026.
+
 ## How to file issues and get help
 
-This project uses GitHub Issues to track bugs and feature requests. Please search this repository's existing issues before filing new issues to avoid duplicates. For new issues, file your bug or feature request as a new issue.
+If you rely on this project, comment on the [pinned deprecation issue](https://github.com/xrvk/ubb-dashboard-org/issues) before December 7, 2026. The project is MIT licensed, so you are welcome to fork it. No further bug fixes or feature requests will be handled.
 
-**UBB Dashboard** is maintained by a sole Solutions Engineer at GitHub. Support is provided as-is on a best-effort basis. We will do our best to respond to issues, feature requests, and questions, but cannot guarantee response times.
+**UBB Dashboard** is no longer maintained. Support is no longer available.
 
 ## GitHub Support Policy
 

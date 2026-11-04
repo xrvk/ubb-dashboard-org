@@ -1,5 +1,11 @@
 # UBB Dashboard for Organizations
 
+## Deprecation notice
+
+This project is deprecated and no longer maintained. The hosted app and container image will stop being updated, and this repository will be archived on December 7, 2026. If you rely on it, please comment on the [pinned deprecation issue](https://github.com/xrvk/ubb-dashboard-org/issues) before then. The project is MIT licensed, so you are welcome to fork it. For managing Copilot budgets, see [GitHub's official documentation](https://docs.github.com/en/copilot/concepts/billing-and-usage/organizations-and-enterprises/budgets).
+
+The enterprise sibling [xrvk/ubb-dashboard](https://github.com/xrvk/ubb-dashboard) is deprecated too.
+
 **Monitor and manage GitHub Copilot AI-credit budgets for a single GitHub organization — from the org cap down to a single user.**
 
 _A single browser tab to see your org budget, size a universal ULB from real usage, and manage individual ULBs at scale. No backend, no enterprise account, no cost centers — just **org → universal → individual**._
@@ -21,7 +27,7 @@ _Runs entirely in your browser. Your org slug and PAT stay in tab memory — nev
 > Spend forecasts are best-effort recommendations based on the daily spend rate observed so far this billing cycle. **Past usage patterns may not predict future usage.** GitHub may change pricing, credit allocations, or billing mechanics at any time. Always verify recommendations against [GitHub's official documentation](https://docs.github.com/en/copilot/managing-copilot/managing-github-copilot-in-your-organization/managing-the-spending-policy-for-github-copilot-in-your-organization) and your own billing data before applying changes.
 
 > [!NOTE]
-> **Looking for the enterprise version?** This is the **org-only** sibling of [xrvk/ind-ulb-dashboard](https://github.com/xrvk/ind-ulb-dashboard), which targets GHEC enterprise admins with cost centers and an enterprise envelope above the org budget. See [Upstream sync](#-upstream-sync) for the relationship.
+> The enterprise sibling, [xrvk/ubb-dashboard](https://github.com/xrvk/ubb-dashboard), targets GHEC enterprise admins with cost centers and an enterprise envelope above the org budget. It is deprecated too.
 
 ---
 
@@ -33,7 +39,7 @@ This app is for **GitHub Copilot Business** customers on a **single GitHub organ
 - **No cost-center routing.** Your billing is one bucket, not split across cost centers.
 - **You're an org owner or a billing manager** who manages Copilot for everyone in the org.
 
-If you have an enterprise account (`github.com/enterprises/...`), use the [enterprise variant](https://github.com/xrvk/ind-ulb-dashboard) instead — it has all the extra plumbing for the enterprise envelope and cost centers, which this variant deliberately strips out.
+If you have an enterprise account (`github.com/enterprises/...`), the [enterprise variant](https://github.com/xrvk/ubb-dashboard) has the extra plumbing for the enterprise envelope and cost centers. It is also deprecated.
 
 ---
 
@@ -132,7 +138,7 @@ The Import panel needs two things:
 
 > Fine-grained tokens are **not** supported on the org billing API. This is a platform limitation, not an app limitation.
 
-> **github.com only.** This variant does not support GitHub Enterprise Server. If you're on GHES, the parent [enterprise variant](https://github.com/xrvk/ind-ulb-dashboard) supports both hosts.
+> **github.com only.** This variant does not support GitHub Enterprise Server. If you're on GHES, the [enterprise variant](https://github.com/xrvk/ubb-dashboard) supports both hosts and is deprecated too.
 
 On connect, the app fetches every budget and every Copilot seat in the org (both paginated). It does this once on connect and again per Refresh.
 
@@ -214,12 +220,12 @@ See `src/lib/budgetConstraints.ts` and the `orgVariantCore` test suite for the f
 
 ## 🔄 Upstream sync
 
-This repo is a sibling of [`xrvk/ind-ulb-dashboard`](https://github.com/xrvk/ind-ulb-dashboard) (the GHEC enterprise variant). Shared bug fixes flow in both directions by cherry-pick — see [`UPSTREAM_SYNC.md`](./UPSTREAM_SYNC.md) for the running log of applied SHAs and the rules of engagement.
+This repo is a sibling of [`xrvk/ubb-dashboard`](https://github.com/xrvk/ubb-dashboard), the GHEC enterprise variant. Both projects are deprecated, and upstream synchronization has stopped. See [`UPSTREAM_SYNC.md`](./UPSTREAM_SYNC.md) for the historical log.
 
 Add the parent as a remote in a local clone:
 
 ```bash
-git remote add upstream https://github.com/xrvk/ind-ulb-dashboard.git
+git remote add upstream https://github.com/xrvk/ubb-dashboard.git
 git fetch upstream
 ```
 

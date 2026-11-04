@@ -1,5 +1,7 @@
 # Upstream sync log
 
+Both repositories are deprecated, and upstream synchronization has stopped. This document is a historical record. No further cherry-picks are planned.
+
 This repo (`xrvk/ubb-dashboard-org`) is a sibling of
 [`xrvk/ubb-dashboard`](https://github.com/xrvk/ubb-dashboard) (the GHEC
 enterprise variant of the same app, formerly `xrvk/ind-ulb-dashboard`). Both repos share a meaningful chunk of

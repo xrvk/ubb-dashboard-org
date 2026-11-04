@@ -13,6 +13,7 @@ import { UniversalUlbPage } from '@/components/UniversalUlbPage'
 import { BudgetConstraintsHelpPage } from '@/components/BudgetConstraintsHelpPage'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { PartialLoadBanner } from '@/components/PartialLoadBanner'
+import { DeprecationBanner } from '@/components/DeprecationBanner'
 import { Button } from '@/components/ui/button'
 import { cn, openExternal } from '@/lib/utils'
 import { describeError, isAborted } from '@/lib/errors'
@@ -157,6 +158,7 @@ export function App() {
   return (
     <div className="min-h-screen">
       <Toaster richColors position="bottom-right" />
+      <DeprecationBanner />
       <header className="border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
           <div className="flex items-center gap-2.5">
