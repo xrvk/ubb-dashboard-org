@@ -2,7 +2,7 @@
 
 ## Deprecation notice
 
-This project is deprecated and no longer maintained. The hosted app and container image will stop being updated, and this repository will be archived on December 7, 2026. If you rely on it, please comment on the [pinned deprecation issue](https://github.com/xrvk/ubb-dashboard-org/issues) before then. The project is MIT licensed, so you are welcome to fork it. For managing Copilot budgets, see [GitHub's official documentation](https://docs.github.com/en/copilot/concepts/billing-and-usage/organizations-and-enterprises/budgets).
+This project is deprecated and no longer maintained. The hosted app and container image will stop being updated, and this repository will be archived on December 7, 2026. If you rely on it, please comment on the [pinned deprecation issue](https://github.com/xrvk/ubb-dashboard-org/issues/74) before then. The project is MIT licensed, so you are welcome to fork it. For managing Copilot budgets, see [GitHub's official documentation](https://docs.github.com/en/copilot/concepts/billing-and-usage/organizations-and-enterprises/budgets).
 
 The enterprise sibling [xrvk/ubb-dashboard](https://github.com/xrvk/ubb-dashboard) is deprecated too.
 
